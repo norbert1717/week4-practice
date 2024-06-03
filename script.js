@@ -1,60 +1,41 @@
-/*console.log("hello world");
+const data = ["one", "two", "three", "four", "five", "six", "seven"];
 
-// függvények
+/*data.forEach((element, index, array) => {
+    console.log(`The ${index}. element of the "${array}" array is: ${element}`)
+})*/
 
-helloWorld(); // már azelőtt meghívhatom a függvényt, mielőtt megírtam vollna, ha nem változóként hozom létre, felkúszik a 0. sorba a függvény.
+data.forEach(element => console.log(element)); // for loop, átadja minden egyes értékét az arraynek
+const newData = [];
+const result = data.forEach(element => newData.push(`new${element}`)); // új tömb jön létre
+console.log(newData);
 
-function helloWorld () {
-    console.log("hello world from the function");
-    helperFunction();
-    
-    function helperFunction() {
-        console.log("i am helping");
-    }
-    
-    const functionVariable = "text";
-    console.log(functionVariable);
-}
-    
-    console.log("hello world2");
-    
-const coolerHelloWorld = function() { // ha változóba mentem a függvényem, akkor később kapja meg a feladatát
-    console.log("hello world from the cooler function");
-}
+//forEach függvénynek nincs return value-ja
 
-coolerHelloWorld();
+const result1 = data.map(element => `new${element}`); // mindig visszatér egy ugyanannyi elemből álló fügvénnyel, mint amivel indultunk
+console.log(result1);
 
-const coolestHelloWorld = () => {
-    console.log("hello world from the coolest function");
-}
+const result2 = data.filter((element) => element.length > 3) // kiszűri az elemeket, amik teljesülnek T-visszaadja az adott elemet, F-nem adja vissza
+console.log(result2);
 
-coolestHelloWorld(); */
+const result3 = data.reduce((prev, curr) => prev + curr, "jeghidegmitiszol"); // az eddigi elemekből készített egy db értéket
+/*  1.prev : "jeghidegmitiszol"
+curr: "one"
+cb: prev + curr -> "jeghidegmitiszol" + "one" -> "jeghitegmitiszolone"
 
-function sumOfTwoNumbers(number1, number2) {
-    return number1 + number2;
-    // number1 + number2;  az érték undefined lesz
-}
+2. prev: "jeghidegmitiszolone"
+curr: "two"
+... */
 
-/*const result = sumOfTwoNumbers(1, 2);
-console.log("result: " + result);*/
+console.log(result3);
+const result4 = data.reduce((prev, curr) => prev + curr);
+/*
+1. prev: "one"
+curr: "two"
+cb: prev + curr -> "one" + "two" -> "onetwo"
+2. prev: "onetwo"
+...*/
 
-function multiplyTwoNumbers(number1, number2) {
-    return number1 * number2;
-}
+console.log(result4); 
 
-console.log(sumOfTwoNumbers(20, 2));
-
-const arrowSumOfTwoNumbers = (number1, number2) => number1 + number2; // a nyíl függvénynél nem szükséges a return szó, nem szükséges a kapcsos zárójel se. több műveletnél kell a kapcsos zárójel
-
-console.log(arrowSumOfTwoNumbers(1, 2));
-
-function doSomeMagic (number1, number2, callback) { // a callback elkér egy függvényt és majd valamikor lefuttatja
-    return callback(number1, number2);
-} 
-
-console.log(doSomeMagic(1, 2, sumOfTwoNumbers));
-console.log(doSomeMagic(1, 2, multiplyTwoNumbers));
-console.log(doSomeMagic(10, 2, (number1, number2) => number1**number2)) // ebből => lesz ez
-console.log(doSomeMagic(10, 2, function (number1, number2)  {
-    return number1**number2
-}));
+const result5 = data.find(element => element.length > 3); // az első megtalált olyan elemet adja vissza, ahol előfordul
+console.log(result5)
